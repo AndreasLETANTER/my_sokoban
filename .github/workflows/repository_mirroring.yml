@@ -1,4 +1,7 @@
 name: GitHub Actions Mirroring
+env:
+  MIRROR_URL: git@github.com:EpitechPromo2026/B-DOP-200-NAN-2-1-chocolatine-andreas.le-tanter.git
+  EXECUTABLES:
 on:
   push:
   pull_request:
@@ -8,8 +11,6 @@ on:
 jobs:
   to_github:
     runs-on: ubuntu-latest
-    env:
-      MIRROR_URL: git@github.com:EpitechPromo2026/B-DOP-200-NAN-2-1-chocolatine-andreas.le-tanter.git
     steps:
     - uses: actions/checkout@v3
       with:
