@@ -1,7 +1,9 @@
 name: GitHub Actions Mirroring
 on: [push, pull]
-  issue_comment:
-    types: [created, deleted]
+  pull_request:
+    types: [created]
+    branches-ignore:    
+      - 'ga-ignore-*'
 jobs:
   to_github:
     runs-on: ubuntu-latest
