@@ -21,7 +21,6 @@ jobs:
           ${{ env.MIRROR_URL }}
         ssh_private_key:
           ${{ secrets.SSH_KEY }}
-jobs:
   check_repository_cleanliness:
     runs-on: ubuntu-latest
     steps:
