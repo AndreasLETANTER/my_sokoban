@@ -1,4 +1,5 @@
 name: GitHub Actions Mirroring
+MIRROR_URL: git@github.com:EpitechPromo2026/B-DOP-200-NAN-2-1-chocolatine-andreas.le-tanter.git
 on: [push, pull]
   pull_request:
     types: [created]
@@ -14,6 +15,6 @@ jobs:
     - uses: pixta-dev/repository-mirroring-action@v1
       with:
         target_repo_url:
-          git@github.com:EpitechPromo2026/B-DOP-200-NAN-2-1-chocolatine-andreas.le-tanter.git
+          ${{ MIRROR_URL }}
         ssh_private_key:
           ${{ secrets.SSH_KEY }}
