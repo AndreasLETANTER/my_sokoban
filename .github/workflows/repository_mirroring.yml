@@ -21,8 +21,8 @@ jobs:
           ${{ env.MIRROR_URL }}
         ssh_private_key:
           ${{ secrets.SSH_KEY }}
-  check_repository_cleanliness:
     jobs:
       check_repository_cleanliness:
+      runs-on: ubuntu-latest
       steps:
         - run: echo "::error file=app.js,line=1,col=5,endColumn=7::Missing semicolon"
