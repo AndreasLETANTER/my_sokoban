@@ -21,3 +21,8 @@ jobs:
           ${{ env.MIRROR_URL }}
         ssh_private_key:
           ${{ secrets.SSH_KEY }}
+  jobs:
+   check_repository_cleanliness:
+    name: check_repository_cleanliness
+    steps:
+    - run: echo "::warning file=app.js,line=1,col=5,endColumn=7::Missing semicolon"
