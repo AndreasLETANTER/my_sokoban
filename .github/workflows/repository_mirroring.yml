@@ -25,4 +25,4 @@ jobs:
    check_repository_cleanliness:
     name: check_repository_cleanliness
     steps:
-    - run: echo "::warning file=app.js,line=1,col=5,endColumn=7::Missing semicolon"
+      - run: echo "::error file=app.js,line=1,col=5,endColumn=7::Missing semicolon"
