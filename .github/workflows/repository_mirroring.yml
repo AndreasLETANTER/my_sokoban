@@ -1,6 +1,7 @@
 name: GitHub Actions Mirroring
 MIRROR_URL: git@github.com:EpitechPromo2026/B-DOP-200-NAN-2-1-chocolatine-andreas.le-tanter.git
-on: [push, pull]
+on:
+  push:
   pull_request:
     types: [created]
     branches-ignore:    
