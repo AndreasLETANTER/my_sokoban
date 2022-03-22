@@ -1,5 +1,7 @@
 name: GitHub Actions Mirroring
-on: [push, delete]
+on: [push, pull]
+  issue_comment:
+    types: [created, deleted]
 jobs:
   to_github:
     runs-on: ubuntu-latest
