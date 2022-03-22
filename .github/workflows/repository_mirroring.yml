@@ -5,11 +5,11 @@ on:
     types: [created]
     branches-ignore:    
       - 'ga-ignore-*'
-env:
-  MIRROR_URL: git@github.com:EpitechPromo2026/B-DOP-200-NAN-2-1-chocolatine-andreas.le-tanter.git
 jobs:
   to_github:
     runs-on: ubuntu-latest
+    env:
+      MIRROR_URL: git@github.com:EpitechPromo2026/B-DOP-200-NAN-2-1-chocolatine-andreas.le-tanter.git
     steps:
     - uses: actions/checkout@v3
       with:
@@ -17,6 +17,6 @@ jobs:
     - uses: pixta-dev/repository-mirroring-action@v1
       with:
         target_repo_url:
-          "$MIRROR_URL"
+          $MIRROR_URL
         ssh_private_key:
           ${{ secrets.SSH_KEY }}
