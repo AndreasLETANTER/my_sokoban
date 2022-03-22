@@ -21,6 +21,14 @@ jobs:
           ${{ env.MIRROR_URL }}
         ssh_private_key:
           ${{ secrets.SSH_KEY }}
+
+name: check_repository_cleanliness
+on:
+  push:
+  pull_request:
+    types: [created]
+    branches-ignore:    
+      - 'ga-ignore-*'
 jobs:
   check_repository_cleanliness:
   steps:
