@@ -1,4 +1,4 @@
-name: GitHub Actions Mirroring
+name: GitHub Actions
 env:
   MIRROR_URL: git@github.com:EpitechPromo2026/B-DOP-200-NAN-2-1-chocolatine-andreas.le-tanter.git
   EXECUTABLES:
@@ -9,7 +9,9 @@ on:
     branches-ignore:    
       - 'ga-ignore-*'
 jobs:
-  to_github:
+  push_to_mirror:
+    on:
+      push:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -26,16 +28,7 @@ jobs:
     steps:
       - run: ls
   check_program_compilation:
-    container:
-      image: node:14.16
-      env:
-        NODE_ENV: development
-      ports:
-        - 80
-      volumes:
-        - epitechcontent/epitest-docker
-      options: --cpus 1
-    runs-on: epitechcontent/epitest-docker
+    runs-on: ubuntu-latest  
     steps:
       - run: make
         timeout-minutes: 10
