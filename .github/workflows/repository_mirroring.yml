@@ -28,4 +28,4 @@ jobs:
   check_program_compilation:
     runs-on: ubuntu-latest
     steps:
-      - rune: make
+      - run: make
