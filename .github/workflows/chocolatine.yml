@@ -1,4 +1,4 @@
-name: GitHub Actions
+name: chocolatine
 env:
   MIRROR_URL: git@github.com:EpitechPromo2026/B-DOP-200-NAN-2-1-chocolatine-andreas.le-tanter.git
   EXECUTABLES:
@@ -21,7 +21,6 @@ jobs:
             ${{ env.MIRROR_URL }}
           ssh_private_key:
             ${{ secrets.SSH_KEY }}
-    on: push:
   check_repository_cleanliness:
     runs-on: ubuntu-latest
     steps:
@@ -32,3 +31,8 @@ jobs:
       - run: make
         timeout-minutes: 2
       - run: make clean
+  run_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - run: make tests_run
+        timeout-minutes: 2
