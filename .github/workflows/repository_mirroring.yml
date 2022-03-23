@@ -33,11 +33,10 @@ jobs:
       ports:
         - 80
       volumes:
-        - my_docker_volume:/volume_mount
+        - epitechcontent/epitest-docker
       options: --cpus 1
       runs-on: epitechcontent/epitest-docker
     steps:
       - run: make
         timeout-minutes: 10
       - run: make clean
-      - run : -f "cq"
