@@ -29,5 +29,3 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: make
-    steps:
-      -run: make clean
