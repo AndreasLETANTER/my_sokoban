@@ -27,6 +27,6 @@ jobs:
       - run: ls
   check_program_compilation:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
     steps:
       - run: make
+        timeout-minutes: 10
