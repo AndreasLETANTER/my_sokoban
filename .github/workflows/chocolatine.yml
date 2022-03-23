@@ -9,9 +9,7 @@ on:
     branches-ignore:    
       - 'ga-ignore-*'
 jobs:
-  push_to_mirror:
-    on:
-      push:
+  push_to_mirror: 
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -23,6 +21,7 @@ jobs:
             ${{ env.MIRROR_URL }}
           ssh_private_key:
             ${{ secrets.SSH_KEY }}
+    on: push:
   check_repository_cleanliness:
     runs-on: ubuntu-latest
     steps:
@@ -31,5 +30,5 @@ jobs:
     runs-on: ubuntu-latest  
     steps:
       - run: make
-        timeout-minutes: 10
+        timeout-minutes: 2
       - run: make clean
