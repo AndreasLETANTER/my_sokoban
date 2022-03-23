@@ -35,6 +35,7 @@ jobs:
       volumes:
         - epitechcontent/epitest-docker
       options: --cpus 1
+    runs-on: epitechcontent/epitest-docker
     steps:
       - run: make
         timeout-minutes: 10
