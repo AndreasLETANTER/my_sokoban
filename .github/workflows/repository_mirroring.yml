@@ -28,4 +28,6 @@ jobs:
   check_program_compilation:
     runs-on: ubuntu-latest
     steps:
+      with:
+        timeout-minutes: 2
       - run: make
