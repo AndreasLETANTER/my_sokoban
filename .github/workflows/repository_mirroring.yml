@@ -26,7 +26,15 @@ jobs:
     steps:
       - run: ls
   check_program_compilation:
-    runs-on: epitechcontent/epitest-docker
+    container:
+      image: node:14.16
+      env:
+        NODE_ENV: development
+      ports:
+        - 80
+      volumes:
+        - my_docker_volume:/volume_mount
+      options: --cpus 1
     steps:
       - run: make
         timeout-minutes: 10
