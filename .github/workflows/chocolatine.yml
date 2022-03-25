@@ -6,7 +6,7 @@ on:
   push:
   pull_request:
     types: [created]
-    branches-ignore:    
+    branches-ignore:
       - 'ga-ignore-*'
 jobs:
   push_to_mirror: 
@@ -26,7 +26,8 @@ jobs:
     steps:
       - run: ls
   check_program_compilation:
-    runs-on: ubuntu-latest  
+    container:
+      image: epitechcontent/epitest-docker
     steps:
       - run: make
         timeout-minutes: 2
