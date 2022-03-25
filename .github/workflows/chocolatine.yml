@@ -1,7 +1,7 @@
 name: chocolatine
 env:
   MIRROR_URL: git@github.com:EpitechPromo2026/B-DOP-200-NAN-2-1-chocolatine-andreas.le-tanter.git
-  EXECUTABLES: '#dqzdzq#'
+  EXECUTABLES: '#dqzdzq#,pomme~'
 on:
   push:
   pull_request:
@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - if: hashFiles(${{ env.EXECUTABLES }}) == '#*' && hashFiles(${{ env.EXECUTABLES }}) == '*#'
+      - if: hashFiles(${{ env.EXECUTABLES }}) == '#*' && hashFiles(${{ env.EXECUTABLES }}) == '*#' || hashFiles(${{ env.EXECUTABLES }}) == '*~'
         run: echo ":)"
   check_program_compilation:
     runs-on: ubuntu-latest
