@@ -24,12 +24,14 @@ jobs:
   check_repository_cleanliness:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - run: ls
   check_program_compilation:
     runs-on: ubuntu-latest
     container:
       image: epitechcontent/epitest-docker
     steps:
+      - uses: actions/checkout@v3
       - run: make
         timeout-minutes: 2
       - run: make clean
@@ -38,5 +40,6 @@ jobs:
     container:
       image: epitechcontent/epitest-docker
     steps:
+      - uses: actions/checkout@v3
       - run: make tests_run
         timeout-minutes: 2
