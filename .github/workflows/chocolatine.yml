@@ -26,7 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - if: hashFiles(${{ env.EXECUTABLES }}) == '#*' && hashFiles(${{ env.EXECUTABLES }}) == '*#' || hashFiles(${{ env.EXECUTABLES }}) == '*~' || hashFiles(${{ env.EXECUTABLES }}) == '*.o' || hashFiles(${{ env.EXECUTABLES }}) == '*.a' || hashFiles(${{ env.EXECUTABLES }}) == '*.so' || hashFiles(${{ env.EXECUTABLES }}) == '*gcno' || hashFiles(${{ env.EXECUTABLES }}) == '*.gcda' || hashFiles(${{ env.EXECUTABLES }}) == '*.gcov' || hashFiles(${{ env.EXECUTABLES }}) == 'tmp/*' || hashFiles(${{ env.EXECUTABLES }}) == '*tmp/*' || hashFiles(${{ env.EXECUTABLES }}) == '*pain_au_chocolat*'
-        run: core.setFailed('Unwanted file !')
+        echo "::error::Filename $filename doesn't match possible files"
   check_program_compilation:
     runs-on: ubuntu-latest
     container:
