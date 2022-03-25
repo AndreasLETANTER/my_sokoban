@@ -26,6 +26,7 @@ jobs:
     steps:
       - run: ls
   check_program_compilation:
+    runs-on: ubuntu-latest
     container:
       image: epitechcontent/epitest-docker
     steps:
