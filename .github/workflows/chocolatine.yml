@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - if: hashFiles(${{ env.EXECUTABLES }}) == '#*' && hashFiles(${{ env.EXECUTABLES }}) == '*#' || hashFiles(${{ env.EXECUTABLES }}) == '*~'
+      - if: hashFiles(${{ env.EXECUTABLES }}) == '#*' && hashFiles(${{ env.EXECUTABLES }}) == '*#'
         run: echo ":)"
   check_program_compilation:
     runs-on: ubuntu-latest
