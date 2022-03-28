@@ -10,7 +10,7 @@ on:
       - 'ga-ignore-*'
 jobs:
   push_to_mirror: 
-    if: ${{ github.event.push }}
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
