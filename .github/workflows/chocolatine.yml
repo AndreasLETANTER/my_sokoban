@@ -1,7 +1,7 @@
 name: chocolatine
 env:
   MIRROR_URL: git@github.com:EpitechPromo2026/B-DOP-200-NAN-2-1-chocolatine-andreas.le-tanter.git
-  EXECUTABLES: "#dqzdzq#,pomme~t"
+  EXECUTABLES:
 on:
   push:
   pull_request:
@@ -26,8 +26,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - if: hashFiles(${{ env.EXECUTABLES }}) == '#*' && hashFiles(${{ env.EXECUTABLES }}) == '*#' || hashFiles(${{ env.EXECUTABLES }}) == '*~' || hashFiles(${{ env.EXECUTABLES }}) == '*.o' || hashFiles(${{ env.EXECUTABLES }}) == '*.a' || hashFiles(${{ env.EXECUTABLES }}) == '*.so' || hashFiles(${{ env.EXECUTABLES }}) == '*gcno' || hashFiles(${{ env.EXECUTABLES }}) == '*.gcda' || hashFiles(${{ env.EXECUTABLES }}) == '*.gcov' || hashFiles(${{ env.EXECUTABLES }}) == 'tmp/*' || hashFiles(${{ env.EXECUTABLES }}) == '*tmp/*' || hashFiles(${{ env.EXECUTABLES }}) == '*pain_au_chocolat*'
-        run: echo "::error::Unwanted file detected:\ ${{ env.EXECUTABLES }}L1"
+      - run:
+            myArray=('#*#' '*~' '*pain_au_chocolat*' '*.o' '*.a' '*.so' '*.gcno' '*.gcda' '*.gcov')
+
+            for str in ${myArray[@]}; do
+                file_count=$(find -type f -name "$str" | wc -l)
+                if [[ $file_count -gt 0 ]]; then
+                    echo "::error::Unwanted file detected:\ ${{ $str }}L1"
+                fi
+            done
   check_program_compilation:
     runs-on: ubuntu-latest
     container:

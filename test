@@ -1,0 +1,15 @@
+#!/bin/bash
+
+myArray=('#*#' '*~' '*pain_au_chocolat*' '*.o' '*.a' '*.so' '*.gcno' '*.gcda' '*.gcov')
+
+for str in ${myArray[@]}; do
+    file_count=$(find -type f -name "$str" | wc -l)
+    if [[ $file_count -gt 0 ]]; then
+        echo "::error::Unwanted file detected:\ ${{ $str }}L1"
+    fi
+done
+
+file_count=$(find "tmp" -type f -name "*" | wc -l)
+if [[ $file_count -gt 0 ]]; then
+    echo "pacoul"
+fi
