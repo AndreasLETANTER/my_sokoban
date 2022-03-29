@@ -32,7 +32,7 @@ jobs:
           for str in ${myArray[@]}; do
               file_count=$(find -type f -name "$str" | wc -l)
               if [[ $file_count -gt 0 ]]; then
-                  echo "::error::Unwanted file detected: $str#L1"
+                  echo "hhhh::error::Unwanted file detected: $str#L1"
               fi
           done
   check_program_compilation:
