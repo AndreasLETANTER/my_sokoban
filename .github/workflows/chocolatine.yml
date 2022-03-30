@@ -28,14 +28,17 @@ jobs:
       - uses: actions/checkout@v3
       - run: |
           myArray=('#*#' '*~' '*pain_au_chocolat*' '*.o' '*.a' '*.so' '*.gcno' '*.gcda' '*.gcov')
-
+          find=0
           for str in ${myArray[@]}; do
               file_count=$(find -type f -name "$str" | wc -l)
               if [[ $file_count -gt 0 ]]; then
                   echo "::error title="Unwanted file detected: $str#L1"::$str"
+                  find=1
               fi
           done
-          core.setFailed(error.message);
+          if [[ find == 1]]; then
+            core.setFailed(error.message);
+          fi
   check_program_compilation:
     runs-on: ubuntu-latest
     container:
