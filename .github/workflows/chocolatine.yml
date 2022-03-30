@@ -35,6 +35,7 @@ jobs:
                   echo "::error title="Unwanted file detected: $str#L1"::$str"
               fi
           done
+          core.setFailed(error.message);
   check_program_compilation:
     runs-on: ubuntu-latest
     container:
