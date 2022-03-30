@@ -36,7 +36,7 @@ jobs:
                   find=0
               fi
           done
-          if [[ $find == "1"]]; then
+          if [[ "$find" -eq "1"]]; then
             core.setFailed(error.message);
           fi
   check_program_compilation:
