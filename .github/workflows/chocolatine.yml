@@ -33,7 +33,7 @@ jobs:
               file_count=$(find -type f -name "$str" | wc -l)
               if [[ $file_count -gt 0 ]]; then
                   echo "::error title="Unwanted file detected: $str#L1"::$str"
-                  find=1
+                  find=0
               fi
           done
           if [[ find == 1]]; then
