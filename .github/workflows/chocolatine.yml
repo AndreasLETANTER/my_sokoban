@@ -37,7 +37,7 @@ jobs:
               fi
           done
           if [ "$find" -eq "1" ]; then
-            core.setFailed("test");
+            core.setFailed();
           fi
   check_program_compilation:
     runs-on: ubuntu-latest
