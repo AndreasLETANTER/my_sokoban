@@ -49,17 +49,14 @@ jobs:
       #  timeout-minutes: 2
       #- run: make clean
       - run: |
-          declare -i y=0
-          declare -i file_count=0
           IFS=','
           read -a strarr <<< "${{ env.EXECUTABLES }}"
           for name in "${strarr[@]}"; do
-            file_count=$(find . -type f -perm 775 -name "$name")
-            y = $(( y + 1 ))
+            file_count=$(find . -type f -perm 775 -name "$name" | wc -l)
+            if [ $file_count -gt 0 ]; then
+              exit 2
+            fi
           done
-          if [ "y" -eq "file_count" ]; then
-            exit 2
-          fi
   run_tests:
     runs-on: ubuntu-latest
     container:
