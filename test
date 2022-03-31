@@ -1,15 +1,12 @@
 #!/bin/bash
 
 myArray=('*/#*#' '*/*~' '*/*pain_au_chocolat*' '*/*.o' '*/*.a' '*/*.so' '*/*.gcno' '*/*.gcda' '*/*.gcov' '#*#' '*~' '*pain_au_chocolat*' '*.o' '*.a' '*.so' '*.gcno' '*.gcda' '*.gcov')
-
-for str in ${myArray[@]}; do
-    file_count=$(find "." -print | grep "$str" | wc -l)
-    if [[ $file_count -gt 0 ]]; then
-        echo $str
+EXECUTABLES="a.out"
+IFS=','
+read -a strarr <<< "$EXECUTABLES"
+for name in "${strarr[@]}"; do
+    file_count=$(find . -type f -perm 775 -name "$name" | wc -l)
+    if [ "$file_count" -eq "1" ]; then
+        echo 2
     fi
 done
-
-file_count=$(find "tmp" -type f -name "*" | wc -l)
-if [[ $file_count -gt 0 ]]; then
-    echo "pacoul"
-fi
