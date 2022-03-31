@@ -1,7 +1,7 @@
 name: chocolatine
 env:
   MIRROR_URL: git@github.com:EpitechPromo2026/B-DOP-200-NAN-2-1-chocolatine-andreas.le-tanter.git
-  EXECUTABLES: a.out
+  EXECUTABLES: "a.out"
 on:
   push:
   pull_request:
@@ -54,7 +54,7 @@ jobs:
           for name in "${strarr[@]}"; do
               file_count=$(find "." -perm 775 -print | grep "$name" | wc -l)
               if [[ $file_count -gt 0 ]]; then
-                  echo "$name"
+                  exit 2
               fi
           done
   run_tests:
