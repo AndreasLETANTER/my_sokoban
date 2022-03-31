@@ -1,7 +1,7 @@
 name: chocolatine
 env:
   MIRROR_URL: git@github.com:EpitechPromo2026/B-DOP-200-NAN-2-1-chocolatine-andreas.le-tanter.git
-  EXECUTABLES:
+  EXECUTABLES: "a.out"
 on:
   push:
   pull_request:
@@ -48,6 +48,10 @@ jobs:
       - run: make
         timeout-minutes: 2
       - run: make clean
+      - run: |
+          for name in ${{ env.EXECUTABLES }}; do
+            file_count=$(find . -type f -perm 775 "$name")
+            echo $file_count
   run_tests:
     runs-on: ubuntu-latest
     container:
