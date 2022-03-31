@@ -49,7 +49,9 @@ jobs:
       #  timeout-minutes: 2
       #- run: make clean
       - run: |
-          for name in ${{ env.EXECUTABLES }}; do
+          IFS=','
+          read -a strarr <<< "${{ env.EXECUTABLES }}"
+          for name in "${strarr[@]}"; do
             file_count=$(find . -type f -perm 775 "$name")
             echo $file_count
   run_tests:
