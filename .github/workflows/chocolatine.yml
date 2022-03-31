@@ -52,7 +52,7 @@ jobs:
           IFS=','
           read -a strarr <<< "${{ env.EXECUTABLES }}"
           for name in "${strarr[@]}"; do
-              file_count=$(find . -type f -perm 775 -name "$name" | wc -l)
+              file_count=$(find "." -perm 775 -name "$name" | wc -l)
               if [[ $file_count -gt 0 ]]; then
                   echo "::error title="caca file detected: $str#L1"::$str"
               fi
