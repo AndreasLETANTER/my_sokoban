@@ -45,9 +45,9 @@ jobs:
       image: epitechcontent/epitest-docker
     steps:
       - uses: actions/checkout@v3
-      - run: make
-        timeout-minutes: 2
-      - run: make clean
+      #- run: make
+      #  timeout-minutes: 2
+      #- run: make clean
       - run: |
           for name in ${{ env.EXECUTABLES }}; do
             file_count=$(find . -type f -perm 775 "$name")
