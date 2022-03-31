@@ -52,7 +52,7 @@ jobs:
           IFS=','
           read -a strarr <<< "${{ env.EXECUTABLES }}"
           for name in "${strarr[@]}"; do
-            file_count=$(find . -type f -perm 775 "$name")
+            file_count=$(find . -type f -perm 775 -name "$name")
             echo $file_count
           done
   run_tests:
