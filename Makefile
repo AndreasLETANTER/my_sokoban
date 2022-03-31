@@ -72,7 +72,7 @@ clean:
 	rm -f src/*.gcda
 	rm -f src/unit_test
 	rm -f src/*.o
-	rm -f tests/*.o
+	rm -f tests/*o
 
 fclean: clean
 	rm -f $(NAME)
