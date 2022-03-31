@@ -49,12 +49,11 @@ jobs:
       - run: make
         timeout-minutes: 2
       - run: make clean
-      - uses: actions/checkout@v3
       - run: |
           IFS=','
           read -a strarr <<< "${{ env.EXECUTABLES }}"
           for name in ${strarr[@]}; do
-              file_count=$(find "." -type f -perm 775 -print | grep "$name" | wc -l)
+              file_count=$(find "." -type f -perm 775 -print | grep $name | wc -l)
               if [[ $file_count -eq "0" ]]; then
                   exit 2
               fi
