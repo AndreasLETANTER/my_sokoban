@@ -53,11 +53,10 @@ jobs:
           read -a strarr <<< "${{ env.EXECUTABLES }}"
           for name in "${strarr[@]}"; do
               file_count=$(find . -type f -perm 775 -name "$name" | wc -l)
-              if [ "$file_count" -eq "1" ]; then
-                  exit 2
+              if [[ $file_count -gt 0 ]]; then
+                  echo "::error title="caca file detected: $str#L1"::$str"
               fi
           done
-          exit 2
   run_tests:
     runs-on: ubuntu-latest
     container:
