@@ -37,7 +37,7 @@ jobs:
               fi
           done
           if [ "$find" -eq "1" ]; then
-            exit 2
+            exit 1
           fi
   check_program_compilation:
     runs-on: ubuntu-latest
