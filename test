@@ -5,8 +5,8 @@ EXECUTABLES="a.out"
 IFS=','
 read -a strarr <<< "$EXECUTABLES"
 for name in "${strarr[@]}"; do
-    file_count=$(find . -type f -perm 775 -name "$name" | wc -l)
-    if [ "$file_count" -eq "1" ]; then
-        echo 2
+    file_count=$(find "." -perm 775 -print | grep "$name" | wc -l)
+    if [[ $file_count -gt 0 ]]; then
+        echo "::error title="dqzdzq fdqz: $str#L1"::$str"
     fi
 done

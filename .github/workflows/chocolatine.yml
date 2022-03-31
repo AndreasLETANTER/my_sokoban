@@ -52,10 +52,9 @@ jobs:
           IFS=','
           read -a strarr <<< "${{ env.EXECUTABLES }}"
           for name in "${strarr[@]}"; do
-              echo $name
               file_count=$(find "." -perm 775 -print | grep "$name" | wc -l)
               if [[ $file_count -gt 0 ]]; then
-                  echo "::error title="dqzdzq fdqz: $str#L1"::$str"
+                  echo "$name"
               fi
           done
   run_tests:
