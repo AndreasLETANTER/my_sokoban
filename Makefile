@@ -20,7 +20,7 @@ SRC			=	src/display_storage.c	\
 
 MAIN 		= 	src/main.c
 
-TESTS_SRC 	= 	tests/*.c
+TESTS_SRC 	= 	tests/tests.c
 
 #################ALL OBJ##################
 
@@ -65,13 +65,14 @@ clean:
 	rm -f *~
 	rm -f *.gcno
 	rm -f *.gcda
-	rm -f unit-tests
+	rm -f unit_test
 	rm -f *.o
 	rm -f src/*~
 	rm -f src/*.gcno
 	rm -f src/*.gcda
-	rm -f src/unit-tests
+	rm -f src/unit_test
 	rm -f src/*.o
+	rm -f tests/*.o
 
 fclean: clean
 	rm -f $(NAME)
@@ -80,10 +81,10 @@ fclean: clean
 
 #################TESTS##################
 
-tests_run: fclean makelib
+tests_run: fclean makelib $(OBJT)
 	make clean
-	gcc -o unit_tests $(TESTS_SRC) $(NEW_SRC) $(CFLAGS) $(LIB) $(TESTS_FLAGS)
-	./unit_tests
+	$(CC) -o $(TEST_NAME) $(TESTS_SRC) $(SRC) $(LIB) $(CFLAGS) --coverage -lcriterion
+	./unit_test
 	
 coverage:
 	gcovr --exclude tests

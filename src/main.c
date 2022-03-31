@@ -12,16 +12,6 @@
 #include <fcntl.h>
 #include "my.h"
 
-void free_array(char **array, char *map)
-{
-    int nb_rows = get_nb_rows(map);
-
-    for (int i = 0; i < nb_rows; i++) {
-        free(array[i]);
-    }
-    free(array);
-}
-
 int main(int argc, char **argv)
 {
     char *map;

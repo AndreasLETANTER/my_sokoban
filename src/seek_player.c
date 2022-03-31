@@ -49,3 +49,14 @@ int seek_y_coord_player(char **array, char *map)
         }
     }
 }
+
+void free_array(char **array, char *map)
+{
+    int nb_rows = get_nb_rows(map);
+
+    for (int i = 0; i < nb_rows; i++) {
+        free(array[i]);
+    }
+    free(array);
+}
+
