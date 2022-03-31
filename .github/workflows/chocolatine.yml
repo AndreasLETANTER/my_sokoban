@@ -50,7 +50,7 @@ jobs:
       - run: make
         timeout-minutes: 2
       - run: make clean
-      - run: |ex
+      - run: |
           IFS=','
           read -a strarr <<< "${{ env.EXECUTABLES }}"
           for name in ${strarr[@]}; do
