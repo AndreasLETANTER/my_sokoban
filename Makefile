@@ -44,7 +44,7 @@ fclean: clean
 re:	fclean all
 
 
-unit_tests: fclean makelib
+tests_run: fclean makelib
 	make clean
 	gcc -o unit_tests $(TESTS_SRC) $(NEW_SRC) $(CFLAGS) $(LIB) $(TESTS_FLAGS)
 	./unit_tests
