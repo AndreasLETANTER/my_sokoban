@@ -54,6 +54,7 @@ jobs:
           for name in "${strarr[@]}"; do
             file_count=$(find . -type f -perm 775 "$name")
             echo $file_count
+          done
   run_tests:
     runs-on: ubuntu-latest
     container:
