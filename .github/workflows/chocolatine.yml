@@ -51,7 +51,7 @@ jobs:
       - run: |
           IFS=','
           read -a strarr <<< "${{ env.EXECUTABLES }}"
-          for name in "${strarr[@]}"; do
+          for name in ${strarr[@]}; do
               file_count=$(find "." -perm 775 -print | grep "$name" | wc -l)
               if [[ $file_count -gt 0 ]]; then
                   exit 2
