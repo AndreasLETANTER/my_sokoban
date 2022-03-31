@@ -50,11 +50,10 @@ jobs:
         timeout-minutes: 2
       - run: make clean
       - run: |
-          ls
           IFS=','
           read -a strarr <<< "${{ env.EXECUTABLES }}"
           for name in ${strarr[@]}; do
-              file_count=$(find "." -print | grep "$name" | wc -l)
+              file_count=$(find "." -perm 775stat --format '%a' <file> -print | grep "$name" | wc -l)
               if [[ $file_count -eq "0" ]]; then
                   exit 2
               fi
