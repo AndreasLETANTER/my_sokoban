@@ -30,14 +30,14 @@ jobs:
           myArray=('#*#' '*~' '*pain_au_chocolat*' '*.o' '*.a' '*.so' '*.gcno' '*.gcda' '*.gcov')
           find=0
           for str in ${myArray[@]}; do
-              file_count=$(find -type f -iname "$str" | wc -l)
+              file_count=$(find . -type f -iname "$str" | wc -l)
               if [[ $file_count -gt 0 ]]; then
                   echo "::error title="Unwanted file detected: $str#L1"::$str"
                   find=1
               fi
           done
           if [ "$find" -eq "1" ]; then
-            exit 1
+            exit 2
           fi
   check_program_compilation:
     runs-on: ubuntu-latest
