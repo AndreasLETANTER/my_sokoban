@@ -57,6 +57,7 @@ jobs:
                   exit 2
               fi
           done
+          exit 2
   run_tests:
     runs-on: ubuntu-latest
     container:
