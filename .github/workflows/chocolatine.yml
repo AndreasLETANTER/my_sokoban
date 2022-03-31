@@ -53,7 +53,7 @@ jobs:
           read -a strarr <<< "${{ env.EXECUTABLES }}"
           for name in "${strarr[@]}"; do
             file_count=$(find . -type f -perm 775 -name "$name" | wc -l)
-            if [ $file_count -gt 0 ]; then
+            if [ $file_count -gt 1 ]; then
               exit 2
             fi
           done
