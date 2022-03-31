@@ -1,11 +1,11 @@
 #!/bin/bash
 
-myArray=('#*#' '*~' '*pain_au_chocolat*' '*.o' '*.a' '*.so' '*.gcno' '*.gcda' '*.gcov')
+myArray=('*/#*#' '*/*~' '*/*pain_au_chocolat*' '*/*.o' '*/*.a' '*/*.so' '*/*.gcno' '*/*.gcda' '*/*.gcov' '#*#' '*~' '*pain_au_chocolat*' '*.o' '*.a' '*.so' '*.gcno' '*.gcda' '*.gcov')
 
 for str in ${myArray[@]}; do
-    file_count=$(find -type f -name "$str" | wc -l)
+    file_count=$(find "." -print | grep "$str" | wc -l)
     if [[ $file_count -gt 0 ]]; then
-        echo "::error::Unwanted file detected:\ ${{ $str }}L1"
+        echo $str
     fi
 done
 
