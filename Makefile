@@ -5,29 +5,61 @@
 ## Makefile for eval_expr
 ##
 
-SRC	=	src/*.c
+#################ALL SRC##################
 
-NEW_SRC = src/get_map.c \
-		  src/help.c
+SRC			=	src/display_storage.c	\
+				src/engine.c 			\
+				src/get_map.c 			\
+				src/height_width_calc.c \
+				src/help.c 				\
+				src/lose_win.c       	\
+				src/move_object.c 		\
+				src/move_player.c 		\
+				src/seek_player.c       \
+				src/two_d_array.c
 
-TESTS_SRC = tests/*.c
+MAIN 		= 	src/main.c
 
-NAME	=	my_sokoban
+TESTS_SRC 	= 	tests/*.c
 
-LIB	=	-L./lib/my -lmy
+#################ALL OBJ##################
 
-CFLAGS = -Iinclude -lncurses
+OBJ			=	$(SRC:%.c=%.o)
 
-TESTS_FLAGS = --coverage -lcriterion
+OBJ_MAIN	=	$(MAIN:%.c=%.o)
+
+OBJT		=	$(TESTS_SRC:%.c=%.o)
+
+#################ALL NAMES##################
+
+NAME		=	my_sokoban
+
+TEST_NAME	=	unit_test
+
+#################ALL FLAGS##################
+
+CC			=	gcc
+
+LIB			=	-L./lib/my -lmy
+
+CFLAGS 		= 	-I./include -lncurses
+
+TESTS_FLAGS = 	--coverage -lcriterion
+
+#################ALL##################
 
 all:	$(NAME)
 
-$(NAME):
+$(NAME): 		$(OBJ) $(OBJ_MAIN)
 	make makelib
-	gcc -o $(NAME) $(CFLAGS) $(SRC) $(LIB)
+	$(CC) -o $(NAME) $(OBJ) $(OBJ_MAIN) $(CFLAGS) $(LIB)
+
+#################LIB##################
 
 makelib:
 	make -C ./lib/my
+
+#################CLEAN##################
 
 clean:
 	rm -f *~
@@ -35,14 +67,18 @@ clean:
 	rm -f *.gcda
 	rm -f unit-tests
 	rm -f *.o
+	rm -f src/*~
+	rm -f src/*.gcno
+	rm -f src/*.gcda
+	rm -f src/unit-tests
+	rm -f src/*.o
 
 fclean: clean
 	rm -f $(NAME)
 	rm -f unit_tests
 	make fclean -C ./lib/my
 
-re:	fclean all
-
+#################TESTS##################
 
 tests_run: fclean makelib
 	make clean
@@ -55,11 +91,17 @@ coverage:
 branch_coverage:
 	gcovr -b --exclude tests
 
+#################PUSH##################
+
 push:
 	make fclean
-	git add .
+	git add -A
 	@read -p "Give a commit message " TAG \
     && git commit -m "$${TAG}"
 	git push
 
-.PHONY: all makelib clean fclean re
+#################RE##################
+
+re: fclean all
+
+.PHONY: clean fclean re all tests_run coverage
