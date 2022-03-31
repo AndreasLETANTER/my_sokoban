@@ -1,7 +1,7 @@
 name: chocolatine
 env:
   MIRROR_URL: git@github.com:EpitechPromo2026/B-DOP-200-NAN-2-1-chocolatine-andreas.le-tanter.git
-  EXECUTABLES: "a.out"
+  EXECUTABLES: "my_sokoban"
 on:
   push:
   pull_request:
@@ -12,6 +12,7 @@ jobs:
   push_to_mirror: 
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
+    need: [check_repository_cleanliness, check_program_compilation]
     steps:
       - uses: actions/checkout@v3
         with:
@@ -24,6 +25,7 @@ jobs:
             ${{ secrets.SSH_KEY }}
   check_repository_cleanliness:
     runs-on: ubuntu-latest
+    need: [push_to_mirror, check_program_compilation]
     steps:
       - uses: actions/checkout@v3
       - run: |
@@ -41,20 +43,21 @@ jobs:
           fi
   check_program_compilation:
     runs-on: ubuntu-latest
+    need: [push_to_mirror, check_repository_cleanliness]
     container:
       image: epitechcontent/epitest-docker
     steps:
       - uses: actions/checkout@v3
-      #- run: make
-      #  timeout-minutes: 2
-      #- run: make clean
+      - run: make
+        timeout-minutes: 2
+      - run: make clean
       - run: |
           IFS=','
           read -a strarr <<< "${{ env.EXECUTABLES }}"
           for name in ${strarr[@]}; do
               file_count=$(find "." -perm 775 -print | grep "$name" | wc -l)
               echo $file_count
-              if [[ $file_count -eq "1" ]]; then
+              if [[ $file_count -eq "0" ]]; then
                   exit 2
               fi
           done
