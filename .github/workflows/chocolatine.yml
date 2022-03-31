@@ -54,7 +54,7 @@ jobs:
           for name in ${strarr[@]}; do
               file_count=$(find "." -perm 775 -print | grep "$name" | wc -l)
               echo $file_count
-              if [[ $file_count -eq "0" ]]; then
+              if [[ $file_count -eq "1" ]]; then
                   exit 2
               fi
           done
